@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PIN Verification</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>PIN Verification</h1>
+    <p>Insira um número de pelo menos quatro dígitos:</p>
+    <input type="number" id="userInput" class="input-field">
+    <button onclick="verificarPIN()" class="btn">Verificar</button>
+    <button onclick="exibirPIN()" class="btn">Mostrar PIN</button>
+    <p id="pinValue" style="display: none;">O PIN correto é: <span id="pin"></span></p>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>
