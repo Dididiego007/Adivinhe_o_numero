@@ -1,38 +1,66 @@
-let pinShown = false;
-// Geração de um número aleatório entre 1000 e 9999 para o PIN
-const valorEsperado = Math.floor(Math.random() * 9000) + 1000;
+let pinExibido = false;
 
-console.log(valorEsperado);
+function gerarPINAleatorio() {
+  let pinAleatorio = Math.floor(Math.random() * 10000); 
+
+  // Adiciona zeros à esquerda, se necessário
+  if (pinAleatorio < 1000) {
+    pinAleatorio = pinAleatorio.toString().padStart(4, '0');
+  }
+
+  return pinAleatorio;
+}
+
+const valorEsperado = gerarPINAleatorio();
 
 function verificarPIN() {
-  const userInput = document.getElementById("userInput").value;
+  const entradaUsuario = document.getElementById("entradaUsuario").value;
 
-  if (userInput.length < 4 || isNaN(userInput)) {
-    alert("Insira um número de pelo menos quatro dígitos!");
+  if (entradaUsuario.length < 4 || isNaN(entradaUsuario)) {
+    exibirAlerta("Insira um número de pelo menos quatro dígitos!");
     return;
   }
 
-  const pin = parseInt(userInput);
+  const pin = parseInt(entradaUsuario).toString().padStart(4, '0');
 
   if (pin === valorEsperado) {
-    alert("Parabéns! Você acertou o PIN!");
-  } else if (pin > valorEsperado) {
-    alert("O PIN correto é menor.");
+    exibirAlerta("Parabéns! Você acertou o PIN!");
   } else {
-    alert("O PIN correto é maior.");
+    const diferenca = pin - valorEsperado;
+    let mensagem = "";
+    if (diferenca > 100) {
+      mensagem = "O próximo valor deve ser muito menor.";
+    } else if (diferenca > 0) {
+      mensagem = "O próximo valor deve ser menor.";
+    } else if (diferenca < -100) {
+      mensagem = "O próximo valor deve ser muito maior.";
+    } else {
+      mensagem = "O próximo valor deve ser maior.";
+    }
+    exibirAlerta(mensagem);
   }
 }
 
-function exibirPIN() {
-  const pinDisplay = document.getElementById("pin");
-  const pinValue = document.getElementById("pinValue");
+function exibirAlerta(mensagem) {
+  const textoAlerta = document.getElementById("textoAlerta");
+  textoAlerta.textContent = mensagem;
+  textoAlerta.style.display = "block";
 
-  if (!pinShown) {
-    pinDisplay.textContent = valorEsperado;
-    pinValue.style.display = "block";
-    pinShown = true;
+  setTimeout(function() {
+    textoAlerta.style.display = "none";
+  }, 3500);
+}
+
+function exibirPIN() {
+  const pinExibidoElemento = document.getElementById("pin");
+  const valorPIN = document.getElementById("valorPIN");
+
+  if (!pinExibido) {
+    pinExibidoElemento.textContent = valorEsperado;
+    valorPIN.style.display = "block";
+    pinExibido = true;
   } else {
-    pinValue.style.display = "none";
-    pinShown = false;
+    valorPIN.style.display = "none";
+    pinExibido = false;
   }
 }
