@@ -3,7 +3,7 @@ let pinExibido = false;
 // Função para gerar um número PIN aleatório entre 0000 e 9999
 function gerarPINAleatorio() {
   let pinAleatorio = Math.floor(Math.random() * 10000); 
-  pinAleatorio = 12;
+
   if (pinAleatorio < 1000) {
     pinAleatorio = pinAleatorio.toString().padStart(4, '0');
   }
