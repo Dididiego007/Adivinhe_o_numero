@@ -24,17 +24,17 @@ function verificarPIN() {
 
   const pin = parseInt(entradaUsuario).toString().padStart(4, '0');
 
-  if (pin === valorEsperado) {
+  if (parseInt(pin) === parseInt(valorEsperado)) {
     exibirAlerta("Parabéns! Você acertou o PIN!");
   } else {
-    const diferenca = pin - valorEsperado;
+    const diferenca = parseInt(pin) - parseInt(valorEsperado);
     let mensagem = "";
-    if (diferenca > 100) {
-      mensagem = "O próximo valor deve ser muito menor.";
+    if (diferenca > 1000) {
+      mensagem = "O próximo valor deve ser MUITO menor.";
     } else if (diferenca > 0) {
       mensagem = "O próximo valor deve ser menor.";
-    } else if (diferenca < -100) {
-      mensagem = "O próximo valor deve ser muito maior.";
+    } else if (diferenca < -1000) {
+      mensagem = "O próximo valor deve ser MUITO maior.";
     } else {
       mensagem = "O próximo valor deve ser maior.";
     }
@@ -47,7 +47,7 @@ function exibirAlerta(mensagem) {
   const textoAlerta = document.getElementById("textoAlerta");
   textoAlerta.textContent = mensagem;
   textoAlerta.style.display = "block";
- 
+
   setTimeout(function() {
     textoAlerta.style.display = "none";
   }, 3500);

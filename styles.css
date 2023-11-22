@@ -41,4 +41,10 @@ body {
   .btn:hover {
     background-color: #09b300;
   }
+
+
+  .aviso{
+    font-size: 10px;
+    color: rgb(96, 96, 96);
+  }
   
