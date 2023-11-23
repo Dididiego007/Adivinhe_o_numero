@@ -1,6 +1,5 @@
 let pinExibido = false;
 
-// Função para gerar um número PIN aleatório entre 0000 e 9999
 function gerarPINAleatorio() {
   let pinAleatorio = Math.floor(Math.random() * 10000); 
 
@@ -11,9 +10,6 @@ function gerarPINAleatorio() {
   return pinAleatorio;
 }
 
-const valorEsperado = gerarPINAleatorio();
-
-// Função para verificar o PIN inserido pelo usuário
 function verificarPIN() {
   const entradaUsuario = document.getElementById("entradaUsuario").value;
 
@@ -42,7 +38,6 @@ function verificarPIN() {
   }
 }
 
-// Função para exibir mensagens na página 
 function exibirAlerta(mensagem) {
   const textoAlerta = document.getElementById("textoAlerta");
   textoAlerta.textContent = mensagem;
@@ -53,7 +48,6 @@ function exibirAlerta(mensagem) {
   }, 3500);
 }
 
-// Função para exibir ou ocultar o PIN correto ao clicar no botão correspondente
 function exibirPIN() {
   const pinExibidoElemento = document.getElementById("pin");
   const valorPIN = document.getElementById("valorPIN");
