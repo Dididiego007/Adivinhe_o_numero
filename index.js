@@ -1,4 +1,5 @@
 let pinExibido = false;
+const valorEsperado = gerarPINAleatorio();
 
 function gerarPINAleatorio() {
   let pinAleatorio = Math.floor(Math.random() * 10000); 
@@ -22,19 +23,24 @@ function verificarPIN() {
 
   if (parseInt(pin) === parseInt(valorEsperado)) {
     exibirAlerta("Parabéns! Você acertou o PIN!");
+    
   } else {
     const diferenca = parseInt(pin) - parseInt(valorEsperado);
-    let mensagem = "";
-    if (diferenca > 1000) {
-      mensagem = "O próximo valor deve ser MUITO menor.";
-    } else if (diferenca > 0) {
-      mensagem = "O próximo valor deve ser menor.";
-    } else if (diferenca < -1000) {
-      mensagem = "O próximo valor deve ser MUITO maior.";
-    } else {
-      mensagem = "O próximo valor deve ser maior.";
-    }
+    const mensagem = definirMensagem(diferenca);
     exibirAlerta(mensagem);
+    limparEntrada();
+  }
+}
+
+function definirMensagem(diferenca) {
+  if (diferenca > 1000) {
+    return "O próximo valor deve ser MUITO menor.";
+  } else if (diferenca > 0) {
+    return "O próximo valor deve ser menor.";
+  } else if (diferenca < -1000) {
+    return "O próximo valor deve ser MUITO maior.";
+  } else {
+    return "O próximo valor deve ser maior.";
   }
 }
 
@@ -60,4 +66,12 @@ function exibirPIN() {
     valorPIN.style.display = "none";
     pinExibido = false;
   }
+}
+
+function limparEntrada() {
+  document.getElementById("entradaUsuario").value = "";
+}
+
+function reiniciarJogo() {
+  window.location.reload();
 }

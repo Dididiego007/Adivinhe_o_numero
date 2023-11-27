@@ -8,13 +8,14 @@
 <body>
   <div class="container">
     <h1>Verificação de PIN</h1>
-    <p>Insira um número de pelo menos quatro dígitos:</p>
-    <input type="number" id="entradaUsuario" class="campo-entrada">
+    <p>Insira um número de pelo menos quatro dígitos (0 - 9999):</p>
+    <input type="number" id="entradaUsuario" class="campo-entrada" onkeydown="if(event.keyCode === 13) verificarPIN()">
     <button onclick="verificarPIN()" class="btn">Verificar</button>
     <button onclick="exibirPIN()" class="btn">Mostrar PIN</button>
     <p id="valorPIN" style="display: none;">O PIN correto é: <span id="pin"></span></p>
     <p id="textoAlerta" style="display: none;"></p>
     <p id="diferenca" class="aviso"> ⚠️Obs: A diferença entre "muito maior" para o valor correto é de 1000.</p>
+    <button onclick="reiniciarJogo()" class="btn-reiniciar">Reiniciar Jogo</button>
   </div>
 
   <script src="index.js"></script>
